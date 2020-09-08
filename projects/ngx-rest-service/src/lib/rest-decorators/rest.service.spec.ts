@@ -15,7 +15,6 @@ describe('RestService', () => {
       imports: [HttpClientModule],
     });
     service = TestBed.inject(RestService);
-    service.restConfig.apiBaseUrl = 'http://test.com'
   });
 
   it('should be created', () => {
