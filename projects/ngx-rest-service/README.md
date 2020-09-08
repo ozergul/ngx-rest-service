@@ -1,24 +1,153 @@
-# NgxRestService
+## ngx-rest-service
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
+<a href="https://npm-stat.com/charts.html?package=ngx-rest-service&from=2020-09-08">
+    <img src="https://img.shields.io/apm/dm/ngx-rest-service" />
+</a>
 
-## Code scaffolding
+<br><br>
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
 
-Run `ng generate component component-name --project ngx-rest-service` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-rest-service`.
-> Note: Don't forget to add `--project ngx-rest-service` or else it will be added to the default project in your `angular.json` file. 
+
+## Install
+
+    npm install ngx-rest-service
+    
+or
+
+    yarn add ngx-rest-service 
+    
+### Usage
+Add to imports:
+
+    @NgModule({  
+      imports: [  
+        NgxRestModule.forRoot({  
+          apiBaseUrl: 'http://localhost:3001', // <---- base url, you can get from environment.
+        }),  
+      ],  
+    })
+
+Extend RestService in your service:
+
+    import { Injectable } from '@angular/core';  
+    import { Observable } from 'rxjs';  
+    import { Auth, User } from '../../models';  
+    import { Body, Get, Post, RestService } from 'ngx-rest-service';  
+      
+    @Injectable({  
+      providedIn: 'root',  
+    })  
+    export class AuthService extends RestService {  
+      @Post('/auth/login')  
+      login(@Body userLoginRequest: Auth.UserLoginRequest): Observable<Auth.LoginResponse> {  
+        return null;  
+      }  
+      
+      @Post('/auth/register')  
+      register(@Body userRegisterRequest: Auth.UserRegisterRequest): Observable<User> {  
+        return null;  
+      }  
+      
+      @Get('/auth/me')  
+      inquireMe(): Observable<User> {  
+        return null;  
+      }  
+    }
+
+#### @Get()
+You can use @Get() decorator to make GET request:
+
+    @Get('/projects')  
+    getProjects(): Observable<Project> {  
+      return null;  
+    }
+Equals:
+
+    <apiBaseUrl>/projects
+
+---
+
+    @Get('/projects/{code}')  
+    getProjectByCode(@Path('code') code: string): Observable<Project> {  
+      return null;  
+    }
+Equals:
+
+    <apiBaseUrl>/projects/{code}
+---
+  
+
+    @Get('/projects')  
+    getProjects(@Query('page') page?: number, @Query('limit') limit?: number): Observable<Pagination<Project>> {  
+      return null;  
+    }
+Equals:
+
+    <apiBaseUrl>/projects?page={page}&limit={limit}
+---
+
+    @Get('/projects/${id}')   
+    inquireAcquisitionCredit(
+      @Path('id') id: number,  
+      @Params('personCount') personCount: number,  
+    ): Observable<Project[]> {  
+      return null;  
+    }
+Equals:
+
+    <apiBaseUrl>//projects/{id}
+
+Query String Parameters
+
+    personCount: ${personCount}
+
+#### @Post()
+
+    @Post('/projects/create')  
+    createProject(@Body project: Project): Observable<Project> {  
+      return null;  
+    }
+    
+Equals
+
+    
+#### @Put()
+
+    @Put('/projects/update')  
+    updateProject(@Body project: Project): Observable<Project> {  
+      return null;  
+    }
+### @Delete()
+
+    @Delete('/projects/{id}')  
+    deleteProject(@Path('id') id: number): Observable<DeleteResult> {  
+      return null;  
+    }
+### Download  blob example
+
+    @Get('/downloadExcel')    
+    @Headers({  
+      Accept: 'application/octet-stream,application/json',  
+    })  
+    @ResponseType(eHTTP.ResponseType.Blob)  
+    inquireBillingAccountChargesSummaryExcel(  
+      @Body body: DownloadProjectsExcelRequest,  
+    ): Observable<Blob> {  
+      return null;  
+    }
+
+
+
+
 
 ## Build
 
-Run `ng build ngx-rest-service` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build ngx-rest-service`, go to the dist folder `cd dist/ngx-rest-service` and run `npm publish`.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
-Run `ng test ngx-rest-service` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Further help
+## Running end-to-end tests
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
