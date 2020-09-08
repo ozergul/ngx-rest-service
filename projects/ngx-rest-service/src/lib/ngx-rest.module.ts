@@ -9,9 +9,7 @@ export class NgxRestModule {
       providers: [
         {
           provide: REST_CONFIG,
-          useValue: {
-            config,
-          },
+          useValue: config,
         },
       ],
     };
