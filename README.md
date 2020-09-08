@@ -81,7 +81,7 @@ Equals:
 ---
 ```typescript
 @Get('/projects/{id}')   
-inquireAcquisitionCredit(
+getProjectsById(
   @Path('id') id: number,  
   @Params('personCount') personCount: number,  
 ): Observable<Project[]> {  
