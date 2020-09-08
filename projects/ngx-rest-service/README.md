@@ -80,7 +80,7 @@ Equals:
     <apiBaseUrl>/projects?page={page}&limit={limit}
 ---
 ```typescript
-@Get('/projects/${id}')   
+@Get('/projects/{id}')   
 inquireAcquisitionCredit(
   @Path('id') id: number,  
   @Params('personCount') personCount: number,  
