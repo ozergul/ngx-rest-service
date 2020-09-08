@@ -1,0 +1,19 @@
+{
+  "name": "ngx-rest-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ozer Gul <ozergul@yandex.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/ozergul/ngx-rest-service",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ozergul/ngx-rest-service.git"
+  },
+  "devDependencies": {
+    "typescript": "~3.9"
+  }
+}
