@@ -1,6 +1,6 @@
 ## Install
 
-    npm install ngx-rest-servic
+    npm install ngx-rest-service
 
 or
 
