@@ -125,7 +125,7 @@ deleteProject(@Path('id') id: number): Observable<DeleteResult> {
   Accept: 'application/octet-stream,application/json',  
 })  
 @ResponseType(eHTTP.ResponseType.Blob)  
-inquireBillingAccountChargesSummaryExcel(  
+inquireExcel(  
   @Body body: DownloadProjectsExcelRequest,  
 ): Observable<Blob> {  
   return null;  
